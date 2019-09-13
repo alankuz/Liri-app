@@ -7,12 +7,22 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 
 var input = process.argv[3]
-
-if (process.argv[2] = "concert-this") {
-    var localbandQ = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
+if (process.argv[2] === "concert-this") {
+    var localbandQ = "https://rest.bandsintown.com/artists/" + input.split(' ').join('+') + "/events?app_id=codingbootcamp"
+    request(localbandQ, function(err, response, body) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        var bandInfo = JSON.parse(body)
+       for(i=0; i<bandInfo.length;i++) {
+        console.log("venue number --->" + i)
+        console.log("Venue:"+ bandInfo[i].venue.name)
+        console.log("Venue Location:"+ bandInfo[i].venue.city)
+        console.log("Venue date: " + bandInfo[i].datetime)
+       }
     // Use moment to format dat the mm/dd/yyyy
-}
-if (process.argv[2] = "spotify-this-song") {
+    })}
+if (process.argv[2] === "spotify-this-song") {
     if (input === undefined) {
         input = "The Sign"; //default Song
     }
@@ -34,7 +44,7 @@ if (process.argv[2] = "spotify-this-song") {
     });
     // If no song is provided then your program will default to "The Sign" by Ace of Base.
 }
-if (process.argv[2] = "movie-this") {
+if (process.argv[2] === "movie-this") {
     var movieQ = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=40a1c31a"
     request(movieQ, function(err, response, body) {
     if (err) {
