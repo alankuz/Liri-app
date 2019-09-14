@@ -4,7 +4,7 @@
 ### DEMO 
 
 * [Click here for the demo](https://youtu.be/6EQMhcJonOU)
-This project display skills in node.js by providing an application that uses a multitude of NPM packages, which show you movie information, song information, and venue information.
+This project displays skills in node.js by providing an application that uses a multitude of NPM packages, which show you movie information, song information, and venue information.
 
 ## Getting Started
 
